@@ -1,0 +1,9 @@
+{
+  "Image": ["jpg","png","gif","svg"],
+  "Programs": ["exe","bin","apk","msi"],
+  "Compress": ["zip","rar","7z","tar","tgz","bz2","gz"],
+  "Documents": ["doc","docx","ppt","pptx","xls","xlsx","pdf","ics","potx","xltx"],
+  "Media":["mp3","mp4","avi","mkv","flac"],
+  "Text_File":["log","txt","csv","xml","yml"],
+  "Others":["vcf","url","html","msg"]
+}
