@@ -33,10 +33,10 @@ def convert_data_frame(dict_data):
     df["date"]=df.apply(lambda row : convert_unix(row['posix']), axis = 1)
     price_now=df['price'].values[len(df.price)-1]
     df["diff_between_now"]=(price_now/df['price']-1)*100
-    df["diff_previous_day"]= df.price.pct_change() * 100
+    df["change"]= df.price.pct_change() * 100
     
-    return df[["date","price","diff_between_now","diff_previous_day"]].round(2)
-
+    return df[["date","price","diff_between_now","change"]].round(2)
+print(convert_data_frame(coin_market['bitcoin']))
 
 
 def telegram_bot_sendtext(bot_message):
@@ -50,5 +50,5 @@ def telegram_bot_sendtext(bot_message):
     
 from tabulate import tabulate
 for coin in coins:
-    df=convert_data_frame(coin_market_hourly[coin]).tail()[["date","price","diff_between_now","diff_previous_day"]]
-    telegram_bot_sendtext(coin+"\n"+tabulate(df.values.tolist(), headers=['date',"price","Diff_between","Diff_prev"], tablefmt='psql'))
+    df=convert_data_frame(coin_market_hourly[coin]).tail()[["date","price","change"]]
+    telegram_bot_sendtext(coin+"\n"+tabulate(df.values.tolist(), headers=["date","price","change"], tablefmt='psql'))
