@@ -21,5 +21,5 @@ for coin in coins:
 from tabulate import tabulate
 for coin in coins:
     df=pif.convert_data_frame(coin_market_hourly[coin]).tail()[["date","price","change"]]
-    message="""coin+"\n"+tabulate(df.values.tolist(), headers=["date","price","change"], tablefmt='psql')"""
+    message=coin+"\n"+tabulate(df.values.tolist(), headers=["date","price","change"], tablefmt='psql')
     pif.telegram_bot_sendtext(message)
